@@ -44,13 +44,14 @@ Before you start writing code, read through what's already here and make sure yo
 
 ### Wave 1: Viewing Details
 
-When the user clicks the `select` button of a specific `PetCard` the app should present the user with additional details on the selected pet.  Read through the provided `propTypes` attribute of the given components, **what information does that provide**?
+When the user clicks the `select` button of a specific `PetCard` the app should present the user with additional details on the selected pet.  Read through the provided `propTypes` attribute of the given components, what information does that provide?  **id, name, species, about, location**
 
 **Questions:**
-- How will you track which, if any Pet is the currently selected Pet?  Which component will keep the state?
-- Will you need to switch a functional component to a classical component?
-- What events should you listen for?
+- How will you track which, if any Pet is the currently selected Pet?  Which component will keep the state? **If the select button gets clicked, I'll pass the pet id up the chain via callbacks to PetList, which then calls the props.onSelectPet() in App.js.  The state.currentPet is kept in App.js**
+- Will you need to switch a functional component to a classical component? **Not right now, App is already a class component**
+- What events should you listen for? **clicking the Select button in PetCard.js**
 - Draw a diagram of the flow of rendering and callbacks in your app so far, similar to the one we drew in class.
+**Clicking Select button in PetCard component --onSelectPet()--> PetList --onSelectPet()--> App.js to setState()**
 
 ### Wave 2: Removing Pets
 
