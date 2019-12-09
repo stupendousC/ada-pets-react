@@ -12,7 +12,7 @@ const PetCard = (props) => {
 
   const onSelectPet = (event) => {
     const id = event.target.id;
-    console.log(`PetCard sees u clicked on ${id}`);
+    // console.log(`PetCard sees u clicked on ${id}`);
     props.onSelectPet(id);
   }
 

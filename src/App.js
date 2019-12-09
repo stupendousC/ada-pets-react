@@ -19,24 +19,18 @@ class App extends Component {
       petList: pets,
       currentPet: undefined,
     };
-
-    this.showPetDetails = this.showPetDetails.bind(this);
-    this.removePet = this.removePet.bind(this);
+    
     console.log("started with", pets);
   }
 
-  showPetDetails(id) {
-    console.log(`App received id ${id}`);
+  showPetDetails = (id) => {
+    // console.log(`App received id ${id}`);
     
     const selectedPet = this.state.petList.find(element => element.id === parseInt(id));
-    console.log(selectedPet);
     this.setState({currentPet: selectedPet});
-    
-    console.log("success?", this.state.currentPet);
-    
   }
 
-  removePet(id) {
+  removePet = (id) => {
     // console.log(`App will delete id ${id}`);
 
     let updatedPetList = this.state.petList;
@@ -51,7 +45,6 @@ class App extends Component {
   render () {
     const { currentPet } = this.state;
     
-
     return (
       <main className="App">
         <header className="app-header">
@@ -63,7 +56,7 @@ class App extends Component {
           <SearchBar />
         </section>
 
-        { /* Wave 1:  Where Pet Details should appear */}
+        { currentPet ? <PetDetails currentPet={currentPet} />:(null)}
 
 
         <section className="pet-list-wrapper">

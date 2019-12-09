@@ -9,7 +9,7 @@ const PetList = (props) => {
   const allPets = props.pets;
 
   const onSelectPet = (id) => {
-    console.log(`PetList received ${id}`);
+    // console.log(`PetList received ${id}`);
     props.onSelectPet(id);
   }
 
