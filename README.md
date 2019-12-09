@@ -40,6 +40,7 @@ Before you start writing code, read through what's already here and make sure yo
 
 - How do the components relate to each other? Draw a diagram.
 - How does data get from `App.js` to `PetCard.js`?
+**App.js gets json data, then passes it to PetList, which then passes the data to PetCard.js**
 
 ### Wave 1: Viewing Details
 
