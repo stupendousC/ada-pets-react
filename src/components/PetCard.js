@@ -18,7 +18,7 @@ const PetCard = (props) => {
 
   const onRemovePet = (event) => {
     const id = event.target.id;
-    console.log(`PetCard sees u want to delete ${id}`);
+    // console.log(`PetCard sees u want to delete ${id}`);
     props.onRemovePet(id);  
   }
 

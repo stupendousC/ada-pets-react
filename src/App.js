@@ -37,11 +37,14 @@ class App extends Component {
   }
 
   removePet(id) {
-    console.log(`App will delete id ${id}`);
-    
-    const petToDelete = this.state.petList.find(element => element.id === parseInt(id));
-    console.log("deleting...", petToDelete);
-    
+    // console.log(`App will delete id ${id}`);
+
+    let updatedPetList = this.state.petList;
+    updatedPetList = updatedPetList.filter( pet => {
+      return (pet.id !== parseInt(id));
+    })
+
+    this.setState({petList: updatedPetList});
   }
 
 

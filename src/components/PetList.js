@@ -14,7 +14,7 @@ const PetList = (props) => {
   }
 
   const removePet = (id) => {
-    console.log(`Petlist sees deletion on ${id}`);
+    // console.log(`Petlist sees deletion on ${id}`);
     props.onRemovePet(id);
   }
   
