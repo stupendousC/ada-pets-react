@@ -64,8 +64,10 @@ Add a component to the application called `NewPetForm` to add a new Pet.  This s
 **Questions:** (same as for wave 2)
 
 - How will a new pet information arrive in a PetCard component?  
-- Will the new component be a functional stateless component or a class component.
+**Once 'add a pet' button is clicked, NewPetform will call props.addPetCallback() in App.js, which will take the data and setState onto its petList.  Once setState() completes, everything will re-render, so App trickles down to PetList, which trickles down to PetCard**
+- Will the new component be a functional stateless component or a class component. **NewPetForm will be a class component, becuase I need the states to temporarily store user input data**
 - Draw a diagram of the flow of rendering and callbacks in your app so far, similar to the one we drew in class.
+**User clicks 'add a pet' button in NewPetForm component --addPetCallback--> App.js, which will setState() --render--> PetList --render--> PetCard**
 
 ### Optional: Wave 4:  Filtering the list
 

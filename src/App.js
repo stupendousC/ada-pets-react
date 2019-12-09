@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import PetList from './components/PetList';
 import PetCard from './components/PetCard'
 import PetDetails from './components/PetDetails';
@@ -41,6 +42,11 @@ class App extends Component {
     this.setState({petList: updatedPetList});
   }
 
+  addPet = (data) => {
+    console.log(`App has received new pet ${data}`);
+    
+  }
+
 
   render () {
     const { currentPet } = this.state;
@@ -64,7 +70,7 @@ class App extends Component {
         </section>
 
         <section className="new-pet-form-wrapper">
-          { /* Wave 3:  Where NewPetForm should appear */}
+          <NewPetForm addPetCallback={this.addPet}/>
         </section>
       </main>
     );

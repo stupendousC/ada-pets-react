@@ -9,7 +9,12 @@ class NewPetForm extends Component {
     super(props);
 
     this.state = {
-
+      id: '',
+      name: '',
+      species: '',
+      about: '',
+      images: [],
+      location: '',
     };
   }
   
@@ -20,6 +25,8 @@ class NewPetForm extends Component {
       <form  className="new-pet-form">
         <h3>Add a Pet</h3>
         { /* A form should go here! */ }
+
+        
         <input className="btn btn-success new-pet-form--submit" type="submit" name="submit" value="Add a Pet" />
       </form>
     );
