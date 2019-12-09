@@ -9,6 +9,19 @@ import speciesEmoji from '../speciesEmoji';
 
 const PetCard = (props) => {
   const { id, name, species, about, location } = props;
+
+  const onSelectPet = (event) => {
+    const id = event.target.id;
+    console.log(`PetCard sees u clicked on ${id}`);
+    props.onSelectPet(id);
+  }
+
+  const onRemovePet = (event) => {
+    const id = event.target.id;
+    console.log(`PetCard sees u want to delete ${id}`);
+    props.onRemovePet(id);  
+  }
+
   return (
     <div className="card pet-card">
 
@@ -18,8 +31,9 @@ const PetCard = (props) => {
 
         <button
           className="btn btn-primary pet-card--select-pet-btn"
+          id={id}
+          onClick={onSelectPet}
         >   
-        {/* Clicking this makes PetDetails pop up */}
           Select
         </button>
 
@@ -27,6 +41,8 @@ const PetCard = (props) => {
           type="button"
           className="btn btn-danger pet-card--remove-btn"
           aria-label="Remove"
+          id={id}
+          onClick={onRemovePet}
         >
           Remove
         </button>
@@ -40,7 +56,7 @@ const PetCard = (props) => {
       <section className="pet-card--footer text-muted">
         {location}
       </section>
-      
+
     </div>
   );
 };

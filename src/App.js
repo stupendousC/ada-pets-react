@@ -19,13 +19,30 @@ class App extends Component {
       petList: pets,
       currentPet: undefined,
     };
+
+    this.showPetDetails = this.showPetDetails.bind(this);
+    this.removePet = this.removePet.bind(this);
     console.log("started with", pets);
   }
 
   showPetDetails(id) {
-    // show pet details
+    console.log(`App received id ${id}`);
+    
+    const selectedPet = this.state.petList.find(element => element.id === parseInt(id));
+    console.log(selectedPet);
+    this.setState({currentPet: selectedPet});
+    
+    console.log("success?", this.state.currentPet);
+    
   }
 
+  removePet(id) {
+    console.log(`App will delete id ${id}`);
+    
+    const petToDelete = this.state.petList.find(element => element.id === parseInt(id));
+    console.log("deleting...", petToDelete);
+    
+  }
 
 
   render () {
@@ -47,8 +64,7 @@ class App extends Component {
 
 
         <section className="pet-list-wrapper">
-          { /* Wave 1:  Where PetList should appear */}
-          <PetList pets={this.state.petList} onSelectPet={this.showPetDetails}/>
+          <PetList pets={this.state.petList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet}/>
         </section>
 
         <section className="new-pet-form-wrapper">

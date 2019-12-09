@@ -7,11 +7,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PetList = (props) => {
   const allPets = props.pets;
-  console.log(allPets);
 
+  const onSelectPet = (id) => {
+    console.log(`PetList received ${id}`);
+    props.onSelectPet(id);
+  }
+
+  const removePet = (id) => {
+    console.log(`Petlist sees deletion on ${id}`);
+    props.onRemovePet(id);
+  }
+  
   const petComponents = allPets.map((pet, i) => {
-    return <PetCard key={i} {...pet}/>
+    return <PetCard key={i} {...pet} onSelectPet={onSelectPet} onRemovePet={removePet}/>
   });
+
+
   
   return (
     <div className="card-group">
