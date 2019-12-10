@@ -21,8 +21,6 @@ const PetList = (props) => {
   const petComponents = allPets.map((pet, i) => {
     return <PetCard key={i} {...pet} onSelectPet={onSelectPet} onRemovePet={removePet}/>
   });
-
-
   
   return (
     <div className="card-group">

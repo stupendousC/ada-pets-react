@@ -8,6 +8,7 @@ h1 {
 }
 .app-header {
   grid-area: header;
+  background-color: yellow;
 }
 
 .search-bar {

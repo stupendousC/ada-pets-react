@@ -19,9 +19,20 @@ class App extends Component {
     this.state = {
       petList: pets,
       currentPet: undefined,
+      nextId: this.genNextId(pets),
     };
     
     console.log("started with", pets);
+  }
+
+  genNextId = (petsArray) => {
+    const allIds = petsArray.map ((pet, i) => {return pet.id });
+    const max = Math.max(...allIds);
+    return max+1;
+  }
+
+  incrementNextId = () => {
+    this.setState({ nextId: this.state.nextId + 1});
   }
 
   showPetDetails = (id) => {
@@ -42,8 +53,20 @@ class App extends Component {
     this.setState({petList: updatedPetList});
   }
 
+
+
   addPet = (data) => {
-    console.log(`App has received new pet ${data}`);
+    console.log(`App has received new pet`);
+    let currPetList = this.state.petList.slice();
+    let newPetData = data;
+    newPetData.id = this.state.nextId;
+    
+    currPetList.push(data);
+    this.setState({petList: currPetList});
+    this.incrementNextId();
+
+    console.log(currPetList);
+    console.log(data);
     
   }
 
@@ -64,7 +87,6 @@ class App extends Component {
 
         { currentPet ? <PetDetails currentPet={currentPet} />:(null)}
 
-
         <section className="pet-list-wrapper">
           <PetList pets={this.state.petList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet}/>
         </section>
@@ -78,3 +100,9 @@ class App extends Component {
 }
 
 export default App;
+
+
+App.propTypes = {
+  petList: PropTypes.array,
+  currentPet: PropTypes.instanceOf(PetList),
+}
