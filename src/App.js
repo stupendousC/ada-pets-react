@@ -18,6 +18,7 @@ class App extends Component {
 
     this.state = {
       petList: pets,
+      filteredPetList: undefined,
       currentPet: undefined,
       nextId: this.genNextId(pets),
     };
@@ -69,8 +70,26 @@ class App extends Component {
   }
 
   applySearch = (props) => {
-    console.log(`will search for ${props}`);
-    
+    console.log(`search for ${props} in name/species/about`);
+    // case insensitive regex
+    const searchRegex = new RegExp(props, "i");
+
+    let filteredPetList = this.state.petList.slice();
+    filteredPetList = filteredPetList.filter( pet => {
+      return (searchRegex.test(pet.name) || searchRegex.test(pet.species) || searchRegex.test(pet.about));
+    });
+
+    console.log(filteredPetList);
+    // both the key and the value are called 'filteredPetList', so ES6 allows thsi shortcut
+    this.setState({ filteredPetList });
+  }
+
+  getPetList = () => {
+    if (this.state.filteredPetList) {
+      return (<PetList pets={this.state.filteredPetList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet}/>);
+    } else {
+      return (<PetList pets={this.state.petList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet}/>);
+    }
   }
 
   render () {
@@ -89,7 +108,7 @@ class App extends Component {
         { currentPet ? <PetDetails currentPet={currentPet} />:(null)}
 
         <section className="pet-list-wrapper">
-          <PetList pets={this.state.petList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet}/>
+          { this.getPetList() }
         </section>
 
         <section className="new-pet-form-wrapper">
