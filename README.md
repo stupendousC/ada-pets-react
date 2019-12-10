@@ -75,12 +75,13 @@ Add a component called `SearchBar`.  This component should consist of an input a
 
 **Questions**
 
-- Should this component be a functional stateless component or a class component?
-- Which component should track the filtered list of pets?  
+- Should this component be a functional stateless component or a class component? **SearchBar.js should be a class component, bc I need to store searchTerm in the state, which I'm using only to persist the searchTerm in the input, the info I send back up to App.js is actually event.target.value b/c I don't wanna wait for setState() to finish, I think that'd require some lifecycle methods and IDK any yet**
+- Which component should track the filtered list of pets?  **App.js, which will send the approved pets down to PetList.js, then down to PetCard.js**
 
 ### Further Optional Enhancements
 
 Don't even read this list until you've completed the core requirements.
 
 - Notice that each pet in the application can have multiple images, add functionality to switch between images.  
-- Add functionality to change the pet order.  
+- Add functionality to change the pet order.
+**Soemthing like I did in Lovelace Radio? Use a point up/down emoji button to move around the index inside state.petList**  

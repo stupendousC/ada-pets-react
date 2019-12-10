@@ -53,8 +53,6 @@ class App extends Component {
     this.setState({petList: updatedPetList});
   }
 
-
-
   addPet = (data) => {
     console.log(`App has received new pet`);
     let currPetList = this.state.petList.slice();
@@ -70,6 +68,10 @@ class App extends Component {
     
   }
 
+  applySearch = (props) => {
+    console.log(`will search for ${props}`);
+    
+  }
 
   render () {
     const { currentPet } = this.state;
@@ -81,8 +83,7 @@ class App extends Component {
         </header>
 
         <section className="search-bar-wrapper">
-          { /* Wave 4:  Place to add the SearchBar component */}
-          <SearchBar />
+          <SearchBar searchCallback={this.applySearch}/>
         </section>
 
         { currentPet ? <PetDetails currentPet={currentPet} />:(null)}
