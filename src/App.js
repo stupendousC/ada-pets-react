@@ -84,11 +84,46 @@ class App extends Component {
     this.setState({ filteredPetList });
   }
 
+  moveUpDown = (id, delta) => {
+    console.log(`moving id ${id} by ${delta} spots`);
+
+    // find where the id is in a copy of state.petList 
+    let updatedPetList = this.state.petList;
+    const currIndex = updatedPetList.findIndex( pet => parseInt(pet.id) === parseInt(id) );
+    
+    let newIndex;
+    if (delta === 1) {
+      if (currIndex === 0) {
+        console.log("you're already at the top spot, done");
+        return;
+      } else {
+        newIndex = currIndex - 1;
+      }
+
+    } else if (delta === -1) {
+      if (currIndex === updatedPetList.length-1) {
+        console.log("you're already at the bottom spot, done");
+        return;
+      } else {
+        newIndex = currIndex + 1;
+      }
+    }
+
+    // switch spots
+    const temp = updatedPetList[newIndex];
+    updatedPetList[newIndex] = updatedPetList[currIndex];
+    updatedPetList[currIndex] = temp;
+
+    this.setState({
+      petList: updatedPetList,
+    })
+  }
+
   getPetList = () => {
     if (this.state.filteredPetList) {
-      return (<PetList pets={this.state.filteredPetList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet}/>);
+      return (<PetList pets={this.state.filteredPetList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet} onMoveUpDown={this.moveUpDown}/>);
     } else {
-      return (<PetList pets={this.state.petList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet}/>);
+      return (<PetList pets={this.state.petList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet} onMoveUpDown={this.moveUpDown}/>);
     }
   }
 

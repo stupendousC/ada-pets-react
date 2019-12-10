@@ -8,7 +8,7 @@ import speciesEmoji from '../speciesEmoji';
 
 
 const PetCard = (props) => {
-  const { id, name, species, about, location } = props;
+  const { id, name, species, about, location, onMoveUpDown } = props;
 
   const onSelectPet = (event) => {
     const id = event.target.id;
@@ -21,6 +21,15 @@ const PetCard = (props) => {
     // console.log(`PetCard sees u want to delete ${id}`);
     props.onRemovePet(id);  
   }
+
+  const onMoveUp = (event) => {
+    onMoveUpDown(event.target.id, 1);
+  }
+
+  const onMoveDown = (event) => {
+    onMoveUpDown(event.target.id, -1);
+  }
+
 
   return (
     <div className="card pet-card">
@@ -56,6 +65,15 @@ const PetCard = (props) => {
       <section className="pet-card--footer text-muted">
         {location}
       </section>
+
+      <button type="button" className="btn btn-info pet-card--remove-btn"
+          aria-label="Remove" id={id} onClick={onMoveUp} >
+          Move Up
+        </button>
+      <button type="button" className="btn btn-warning pet-card--remove-btn"
+          aria-label="Remove" id={id} onClick={onMoveDown} >
+          Move Down
+        </button>
 
     </div>
   );

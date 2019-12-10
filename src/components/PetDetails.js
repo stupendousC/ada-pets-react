@@ -8,11 +8,23 @@ import './PetDetails.css';
 
 const PetDetails = (props) => {
   const { name, location, about, species, images } = props.currentPet;
+
+  const allImages = () => {
+    return images.map ((image, i) => {
+      return(
+        <section key={i}>
+        <img src={image} alt={`${name}`} className="pet-details--image" />
+        </section>
+      );
+    })
+  }
+
   return (
     <section className="pet-details">
       <section className="pet-details--header">
         <h2 className="petdetails--name">{speciesEmoji(species)} {name} {speciesEmoji(species)}</h2>
-        <img src={images[0]} alt={`${name}`} className="pet-details--image" />
+        {/* WAS JUST SHOWING 1 IMAGE BEFORE: <img src={images[0]} alt={`${name}`} className="pet-details--image" /> */} 
+        { allImages() }
       </section>
       <article>
         <h3>About {name}</h3>

@@ -18,10 +18,16 @@ const PetList = (props) => {
     props.onRemovePet(id);
   }
   
+  const onMoveUpDown = (id, delta) => {
+    // console.log(`PetList.js passing id ${id} & delta ${delta} to App.js`);
+    props.onMoveUpDown(id, delta);
+  }
+
   const petComponents = allPets.map((pet, i) => {
-    return <PetCard key={i} {...pet} onSelectPet={onSelectPet} onRemovePet={removePet}/>
+    return <PetCard key={i} {...pet} onSelectPet={onSelectPet} onRemovePet={removePet} onMoveUpDown={onMoveUpDown}/>
   });
   
+
   return (
     <div className="card-group">
       {petComponents}
