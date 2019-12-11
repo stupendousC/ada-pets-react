@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   addPet = (data) => {
-    console.log(`App has received new pet`);
+    // console.log(`App has received new pet`);
     let currPetList = this.state.petList.slice();
     let newPetData = data;
     newPetData.id = this.state.nextId;
@@ -64,9 +64,8 @@ class App extends Component {
     this.setState({petList: currPetList});
     this.incrementNextId();
 
-    console.log(currPetList);
-    console.log(data);
-    
+    // console.log(currPetList);
+    // console.log(data);
   }
 
   applySearch = (props) => {
@@ -121,14 +120,15 @@ class App extends Component {
 
   getPetList = () => {
     if (this.state.filteredPetList) {
-      return (<PetList pets={this.state.filteredPetList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet} onMoveUpDown={this.moveUpDown}/>);
+      return (<PetList pets={this.state.filteredPetList} selectPetCallback={this.showPetDetails} removePetCallback={this.removePet} moveUpDownCallback={this.moveUpDown}/>);
     } else {
-      return (<PetList pets={this.state.petList} onSelectPet={this.showPetDetails} onRemovePet={this.removePet} onMoveUpDown={this.moveUpDown}/>);
+      return (<PetList pets={this.state.petList} selectPetCallback={this.showPetDetails} removePetCallback={this.removePet} moveUpDownCallback={this.moveUpDown}/>);
     }
   }
 
   render () {
     const { currentPet } = this.state;
+    // the destructuring above is the same as...  const currentPet = this.state.currentPet;
     
     return (
       <main className="App">

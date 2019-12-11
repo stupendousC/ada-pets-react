@@ -5,28 +5,11 @@ import PetCard from './PetCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const PetList = (props) => {
-  const allPets = props.pets;
+const PetList = ({pets, selectPetCallback, removePetCallback, moveUpDownCallback}) => {
 
-  const onSelectPet = (id) => {
-    // console.log(`PetList received ${id}`);
-    props.onSelectPet(id);
-  }
-
-  const removePet = (id) => {
-    // console.log(`Petlist sees deletion on ${id}`);
-    props.onRemovePet(id);
-  }
-  
-  const onMoveUpDown = (id, delta) => {
-    // console.log(`PetList.js passing id ${id} & delta ${delta} to App.js`);
-    props.onMoveUpDown(id, delta);
-  }
-
-  const petComponents = allPets.map((pet, i) => {
-    return <PetCard key={i} {...pet} onSelectPet={onSelectPet} onRemovePet={removePet} onMoveUpDown={onMoveUpDown}/>
+  const petComponents = pets.map((pet, i) => {
+    return <PetCard key={i} {...pet} selectPetCallback={selectPetCallback} removePetCallback={removePetCallback} moveUpDownCallback={moveUpDownCallback}/>
   });
-  
 
   return (
     <div className="card-group">

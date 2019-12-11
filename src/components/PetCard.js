@@ -8,28 +8,7 @@ import speciesEmoji from '../speciesEmoji';
 
 
 const PetCard = (props) => {
-  const { id, name, species, about, location, onMoveUpDown } = props;
-
-  const onSelectPet = (event) => {
-    const id = event.target.id;
-    // console.log(`PetCard sees u clicked on ${id}`);
-    props.onSelectPet(id);
-  }
-
-  const onRemovePet = (event) => {
-    const id = event.target.id;
-    // console.log(`PetCard sees u want to delete ${id}`);
-    props.onRemovePet(id);  
-  }
-
-  const onMoveUp = (event) => {
-    onMoveUpDown(event.target.id, 1);
-  }
-
-  const onMoveDown = (event) => {
-    onMoveUpDown(event.target.id, -1);
-  }
-
+  const { id, name, species, about, location, selectPetCallback, removePetCallback, moveUpDownCallback } = props;
 
   return (
     <div className="card pet-card">
@@ -38,21 +17,11 @@ const PetCard = (props) => {
 
         {speciesEmoji(species)} {id} - {name}
 
-        <button
-          className="btn btn-primary pet-card--select-pet-btn"
-          id={id}
-          onClick={onSelectPet}
-        >   
+        <button onClick={() => {selectPetCallback(id)}} className="btn btn-primary pet-card--select-pet-btn" >   
           Select
         </button>
 
-        <button
-          type="button"
-          className="btn btn-danger pet-card--remove-btn"
-          aria-label="Remove"
-          id={id}
-          onClick={onRemovePet}
-        >
+        <button onClick={() => {removePetCallback(id)}} type="button" className="btn btn-danger pet-card--remove-btn" aria-label="Remove" >
           Remove
         </button>
 
@@ -67,11 +36,11 @@ const PetCard = (props) => {
       </section>
 
       <button type="button" className="btn btn-info pet-card--remove-btn"
-          aria-label="Remove" id={id} onClick={onMoveUp} >
+          aria-label="Move Up" onClick={() => {moveUpDownCallback(id, 1)}} >
           Move Up
         </button>
       <button type="button" className="btn btn-warning pet-card--remove-btn"
-          aria-label="Remove" id={id} onClick={onMoveDown} >
+          aria-label="Move Down" onClick={() => {moveUpDownCallback(id, -1)}} >
           Move Down
         </button>
 

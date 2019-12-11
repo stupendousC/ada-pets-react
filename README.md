@@ -85,3 +85,25 @@ Don't even read this list until you've completed the core requirements.
 - Notice that each pet in the application can have multiple images, add functionality to switch between images.  
 - Add functionality to change the pet order.
 **Soemthing like I did in Lovelace Radio? Use a point up/down emoji button to move around the index inside state.petList**  
+
+
+
+
+
+### DISCUSSION in classroom ###
+1.  Which component holds all of the data about pets?
+App.js, but i also chose to leave state.searchTerm in SearchBar.js.  Answer key is in ada/week19/testing-in-react
+
+2.  Which component handles the pet form?
+NewPetForm.js
+
+3.  What is the name of the event listener for form submission in the app?
+onSubmitNewPet() in NewPetForm.js
+
+4.  What is the name of the function that handles the form data after form submission in the App component?
+addPet()
+
+5.  What are the names of the event listeners in NewPetForm? (this will change between projects)
+onFieldChange
+
+6.  All event handler functions must be defined as a specific type of function: what type? ARROW functions, so args can be passed WITHOUT triggering the fcn to run

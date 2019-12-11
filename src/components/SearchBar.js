@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SearchBar.css';
 
+// answer key made SearchBar a functional Component and .setState on searchterm up in App.js
+// I chose to do it this way
 class SearchBar extends Component {
 
   constructor(props) {
